@@ -1,0 +1,14 @@
+@layer reset;
+@layer variables;
+@layer theme;
+
+@import url('./_reset.css') layer(reset);
+@import url('./_variables.css') layer(variables);
+@import url('_theme.css') layer(theme);
+
+body {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  background-color: var(--background-primary-color-on-light);
+
+}
