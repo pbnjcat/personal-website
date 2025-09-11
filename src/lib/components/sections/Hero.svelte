@@ -26,7 +26,6 @@
 
 <style>
 	.hero {
-		outline: red dashed 1px;
 		padding: var(--spacing-xx-large) 0;
 	}
 

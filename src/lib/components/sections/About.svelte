@@ -1,3 +1,6 @@
+<script lang="ts">
+</script>
+
 <section id="about" aria-label="About me">
 	<h2>About</h2>
 	<p>
@@ -6,3 +9,10 @@
 		computer I enjoy spending my time reading and listening to music.
 	</p>
 </section>
+
+<style>
+	h2 {
+		font-weight: var(--font-weight-semi-bold);
+		font-size: var(--font-size-heading-2);
+	}
+</style>
