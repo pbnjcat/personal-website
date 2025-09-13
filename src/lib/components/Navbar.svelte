@@ -1,11 +1,13 @@
 <script lang="ts">
 	import Sun from '@tabler/icons-svelte/icons/sun';
+	import Moon from '@tabler/icons-svelte/icons/moon';
 	import { onMount } from 'svelte';
 	import { navLinks } from '$lib/constants/navigation';
 	// let navBar = document.querySelector('navbar');
 	// let headerHeight = document.querySelector('navbar')?.scrollHeight;
 
 	let currentTheme = $state('');
+
 	onMount(() => {
 		const savedTheme = document.documentElement.getAttribute('data-theme');
 		if (savedTheme) {
@@ -15,7 +17,7 @@
 
 		const prefersDarkmode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-		const theme = prefersDarkmode ? 'dark' : 'light';
+		let theme = prefersDarkmode ? 'dark' : 'light';
 		setTheme(theme);
 	});
 
@@ -45,7 +47,11 @@
 			{/each}
 			<li>
 				<button class="theme-toggle" aria-label="toggle theme" onclick={toggleTheme}>
-					<Sun size={24} stroke={2} />
+					{#if currentTheme === 'dark'}
+						<Moon size={24} stroke={2} />
+					{:else}
+						<Sun size={24} stroke={2} />
+					{/if}
 				</button>
 			</li>
 		</ul>
