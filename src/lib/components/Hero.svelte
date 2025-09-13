@@ -1,13 +1,16 @@
 <script lang="ts">
 	import BrandGithubFilled from '@tabler/icons-svelte/icons/brand-github-filled';
 	import BrandLinkedin from '@tabler/icons-svelte/icons/brand-linkedin';
+	import Mail from '@tabler/icons-svelte/icons/mail';
 </script>
 
 <section class="hero">
 	<div>
 		<h1 class="hero__title">Hello, I am Randy.</h1>
 		<h2 class="hero__subtitle">Web Developer</h2>
-		<p>I am based in foggy San Francisco, CA.</p>
+		<p class="hero__description">
+			Designing responsive, user-focused websites from foggy San Francisco, CA.
+		</p>
 	</div>
 	<ul class="social-media" aria-label="Social media links">
 		<li class="social-media__item">
@@ -20,8 +23,23 @@
 				<BrandLinkedin size={24} />
 			</a>
 		</li>
+		<li class="social-media__item">
+			<a class="social-media__link" href="/" aria-label="Email to">
+				<Mail size={24} />
+			</a>
+		</li>
 	</ul>
 	<button class="hero__button">View Resume</button>
+</section>
+<section id="about" aria-label="About me">
+	<h2 class="hero__subtitle">About</h2>
+	<p class="hero__description">
+		I am a full-stack web developer with a passion for JavaScript. The unique blend of creativity
+		and logic is what fuels my excitement and passion for web development.
+	</p>
+	<p class="hero__description">
+		When I am not at my computer I enjoy spending my time reading and listening to music.
+	</p>
 </section>
 
 <style>
@@ -37,10 +55,17 @@
 	.hero__subtitle {
 		font-size: var(--font-size-heading-2);
 		font-weight: var(--font-weight-semi-bold);
+		padding-bottom: var(--spacing-medium);
+	}
+
+	.hero__description {
+		padding-bottom: var(--spacing-xx-small);
 	}
 
 	.hero__button {
-		border-style: none;
+		background-color: transparent;
+		color: inherit;
+		border: 1px solid currentColor;
 		border-radius: 0.25rem;
 		padding: var(--spacing-x-small) var(--spacing-medium);
 		margin-bottom: var(--spacing-medium);
@@ -54,23 +79,27 @@
 
 	.social-media {
 		display: flex;
-		gap: 1.2rem;
-		padding: var(--spacing-medium) 0;
+		gap: var(--spacing-x-small);
+		padding: var(--spacing-small) 0;
 		list-style: none;
 	}
 
 	.social-media__link {
 		display: flex;
 		align-items: center;
-		background-color: var(--color-secondary-on-light);
+		border-style: 1px solid black;
 		color: var(--color-accent-2);
 		text-decoration: none;
 		border-radius: 0.5rem;
-		padding: 0.5rem;
+		padding: var(--spacing-x-small);
 		transition: all 0.2s ease;
 	}
 
 	.social-media__link:hover {
 		transform: translateY(-2px);
+	}
+
+	#about {
+		padding-bottom: var(--spacing-xx-large);
 	}
 </style>

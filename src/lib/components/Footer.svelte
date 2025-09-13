@@ -3,7 +3,7 @@
 
 <footer id="footer">
 	<div>
-		<header>Connect With Me</header>
+		<h2>Connect With Me</h2>
 		<a href="/" target="_blank">Back to top</a>
 	</div>
 </footer>

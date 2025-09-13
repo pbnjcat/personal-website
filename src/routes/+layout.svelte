@@ -1,14 +1,14 @@
 <script lang="ts">
-	import Navbar from '$lib/components/Navbar.svelte';
-	import Footer from '$lib/components/Footer.svelte';
+	import { Navbar, Footer } from '$lib/components';
 	import favicon from '$lib/assets/favicon.svg';
-	import '../lib/components/styles/globals.css';
+	import '../../src/styles/globals.css';
 
 	let { children } = $props();
 </script>
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<title>Randy Li</title>
 </svelte:head>
 
 <div class="app">
@@ -25,7 +25,6 @@
 
 <style>
 	.app {
-		background-color: var(--background-primary-color-on-light);
 		padding: 0 1.25rem;
 		margin: 0 auto;
 		max-width: 80rem;

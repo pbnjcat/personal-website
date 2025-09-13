@@ -1,9 +1,9 @@
 :root {
     /* colors */
     --background-color-on-light: oklch(0.968 0.0059 239.82);
-    --color-text-default: oklch(0.1463 0.0096 238.65);
+    --color-text-default: oklch(0.2103 0.0059 285.89);
 
-    --background-color-on-dark: oklch(0.1311 0.0081 232.14);
+    --background-color-on-dark: oklch(0.2103 0.0059 285.89);
     --color-text-inversed: oklch(0.968 0.0059 239.82);
 
     --color-primary: oklch(0.4982 0.2166 262.71);
@@ -24,9 +24,12 @@
 
     /* spacing */
     --spacing-xx-large: 3rem;
+    --spacing-x-large: 2rem;
     --spacing-large: 1.5rem;
     --spacing-medium: 1rem;
+    --spacing-small: 0.75rem;
     --spacing-x-small: 0.5rem;
+    --spacing-xx-small: 0.25rem;
 }
 
 @font-face {

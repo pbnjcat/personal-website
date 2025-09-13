@@ -7,6 +7,9 @@
 </section>
 
 <style>
+	#project {
+		padding-bottom: var(--spacing-xx-large);
+	}
 	h2 {
 		font-weight: var(--font-weight-semi-bold);
 		font-size: var(--font-size-heading-2);

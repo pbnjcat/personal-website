@@ -1,8 +1,35 @@
 <script lang="ts">
-	import { navLinks } from '$lib/constants/navigation';
 	import Sun from '@tabler/icons-svelte/icons/sun';
+	import { onMount } from 'svelte';
+	import { navLinks } from '$lib/constants/navigation';
 	// let navBar = document.querySelector('navbar');
 	// let headerHeight = document.querySelector('navbar')?.scrollHeight;
+
+	let currentTheme = $state('');
+	onMount(() => {
+		const savedTheme = document.documentElement.getAttribute('data-theme');
+		if (savedTheme) {
+			currentTheme = savedTheme;
+			return;
+		}
+
+		const prefersDarkmode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+		const theme = prefersDarkmode ? 'dark' : 'light';
+		setTheme(theme);
+	});
+
+	function setTheme(theme: string) {
+		const one_year = 60 * 60 * 24 * 365;
+		document.cookie = `theme=${theme}; max-age=${one_year}; path=/`;
+		document.documentElement.setAttribute('data-theme', theme);
+		currentTheme = theme;
+	}
+
+	function toggleTheme() {
+		const theme = currentTheme === 'light' ? 'dark' : 'light';
+		setTheme(theme);
+	}
 </script>
 
 <nav class="navbar" aria-label="Main navigation">
@@ -17,8 +44,8 @@
 				</li>
 			{/each}
 			<li>
-				<button class="theme-toggle">
-					<Sun size={24} />
+				<button class="theme-toggle" aria-label="toggle theme" onclick={toggleTheme}>
+					<Sun size={24} stroke={2} />
 				</button>
 			</li>
 		</ul>
@@ -33,7 +60,8 @@
 		align-items: center;
 		height: var(--spacing-xx-large);
 		background-color: var(--background-primary-color-on-light);
-		padding-top: var(--spacing-large);
+		padding: var(--spacing-x-large) 0;
+		padding-inline: var(--spacing-xx-small);
 	}
 
 	.navbar__brand {
@@ -51,7 +79,7 @@
 		list-style-type: none;
 		flex-direction: row;
 		width: 100%;
-		gap: var(--spacing-x-small)
+		gap: var(--spacing-x-small);
 	}
 
 	.navbar__link {
@@ -64,6 +92,7 @@
 	.theme-toggle {
 		display: flex;
 		cursor: pointer;
+		color: inherit;
 		border: none;
 		background-color: transparent;
 	}
