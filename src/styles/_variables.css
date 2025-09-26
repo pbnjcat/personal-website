@@ -2,15 +2,13 @@
     /* colors */
     --background-color-on-light: oklch(0.968 0.0059 239.82);
     --color-text-default: oklch(0.2103 0.0059 285.89);
-
+    --color-text-secondary-on-light: oklch(0.3703 0.0119 285.81);
+   
     --background-color-on-dark: oklch(0.2103 0.0059 285.89);
     --color-text-inversed: oklch(0.968 0.0059 239.82);
+    --color-text-secondary-on-dark: oklch(0.8711 0.0055 286.29);
 
-    --color-primary: oklch(0.4982 0.2166 262.71);
-    --color-secondary-on-dark: oklch(0.4246 0.1502 257.62);
-    --color-secondary-on-light: oklch(0.7163 0.142 254.37);
-    --color-accent-1: oklch(0.7066 0.1463 235.27);
-    --color-accent-2: oklch(0.559 0 0);
+    --color-primary: oklch(0.5134 0.1603 255.67);
 
     /* typography */
     --font-family-primary: 'Inter', sans-serif;
@@ -19,8 +17,9 @@
     --font-weight-extra-bold: 800;
 
     --font-size-body-normal: 1rem;
-    --font-size-heading-1: 1.5rem;
+    --font-size-heading-1: 1.75rem;
     --font-size-heading-2: 1.2rem;
+    --font-size-heading-3: 1.1rem;
 
     /* spacing */
     --spacing-xx-large: 3rem;

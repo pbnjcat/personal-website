@@ -6,7 +6,7 @@
 
 <section class="hero">
 	<div>
-		<h1 class="hero__title">Hello, I am Randy.</h1>
+		<h1 class="hero__title">Hello, my name is Randy.</h1>
 		<h2 class="hero__subtitle">Web Developer</h2>
 		<p class="hero__description">
 			Designing responsive, user-focused websites from foggy San Francisco, CA.
@@ -38,39 +38,45 @@
 		and logic is what fuels my excitement and passion for web development.
 	</p>
 	<p class="hero__description">
-		When I am not at my computer I enjoy spending my time reading and listening to music.
+		When I am not at my computer I enjoy spending my time reading, hiking, and listening to music.
 	</p>
 </section>
 
 <style>
 	.hero {
+		margin: var(--spacing-large) 0;
 		padding: var(--spacing-xx-large) 0;
 	}
 
 	.hero__title {
+		font-family: var(--font-family-primary);
 		font-size: var(--font-size-heading-1);
 		font-weight: var(--font-weight-extra-bold);
+		color: var(--color-text);
 	}
 
 	.hero__subtitle {
+		font-family: var(--font-family-primary);
 		font-size: var(--font-size-heading-2);
 		font-weight: var(--font-weight-semi-bold);
 		padding-bottom: var(--spacing-medium);
+		color: var(--color-text);
 	}
 
 	.hero__description {
+		font-family: var(--font-family-primary);
 		padding-bottom: var(--spacing-xx-small);
+		color: var(--color-text-muted);
 	}
 
 	.hero__button {
 		background-color: transparent;
-		color: inherit;
-		border: 1px solid currentColor;
+		border: 1px solid var(--color-text);
+		color: var(--color-text);
 		border-radius: 0.25rem;
 		padding: var(--spacing-x-small) var(--spacing-medium);
 		margin-bottom: var(--spacing-medium);
 		cursor: pointer;
-		transition: all 0.2s ease;
 	}
 
 	.hero__button:hover {
@@ -87,8 +93,8 @@
 	.social-media__link {
 		display: flex;
 		align-items: center;
-		border-style: 1px solid black;
-		color: var(--color-accent-2);
+		border-style: 1px solid var(--color-button-border);
+		color: var(--color-text-muted);
 		text-decoration: none;
 		border-radius: 0.5rem;
 		padding: var(--spacing-x-small);

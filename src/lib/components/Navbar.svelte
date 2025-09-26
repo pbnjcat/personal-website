@@ -1,37 +1,6 @@
 <script lang="ts">
-	import Sun from '@tabler/icons-svelte/icons/sun';
-	import Moon from '@tabler/icons-svelte/icons/moon';
-	import { onMount } from 'svelte';
 	import { navLinks } from '$lib/constants/navigation';
-	// let navBar = document.querySelector('navbar');
-	// let headerHeight = document.querySelector('navbar')?.scrollHeight;
-
-	let currentTheme = $state('');
-
-	onMount(() => {
-		const savedTheme = document.documentElement.getAttribute('data-theme');
-		if (savedTheme) {
-			currentTheme = savedTheme;
-			return;
-		}
-
-		const prefersDarkmode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-		let theme = prefersDarkmode ? 'dark' : 'light';
-		setTheme(theme);
-	});
-
-	function setTheme(theme: string) {
-		const one_year = 60 * 60 * 24 * 365;
-		document.cookie = `theme=${theme}; max-age=${one_year}; path=/`;
-		document.documentElement.setAttribute('data-theme', theme);
-		currentTheme = theme;
-	}
-
-	function toggleTheme() {
-		const theme = currentTheme === 'light' ? 'dark' : 'light';
-		setTheme(theme);
-	}
+	import ThemeToggle from './ThemeToggle.svelte';
 </script>
 
 <nav class="navbar" aria-label="Main navigation">
@@ -46,13 +15,7 @@
 				</li>
 			{/each}
 			<li>
-				<button class="theme-toggle" aria-label="toggle theme" onclick={toggleTheme}>
-					{#if currentTheme === 'dark'}
-						<Moon size={24} stroke={2} />
-					{:else}
-						<Sun size={24} stroke={2} />
-					{/if}
-				</button>
+				<ThemeToggle />
 			</li>
 		</ul>
 	</div>
@@ -65,7 +28,6 @@
 		justify-content: space-between;
 		align-items: center;
 		height: var(--spacing-xx-large);
-		background-color: var(--background-primary-color-on-light);
 		padding: var(--spacing-x-large) 0;
 		padding-inline: var(--spacing-xx-small);
 	}
@@ -74,7 +36,7 @@
 		display: flex;
 		text-decoration: none;
 		a {
-			color: var(--color-text-on-light);
+			color: var(--color-text);
 			text-decoration: none;
 		}
 	}
@@ -89,17 +51,9 @@
 	}
 
 	.navbar__link {
-		color: white;
-		text-decoration: none;
-		color: var(--color-text-on-light);
-		padding: var(--spacing-xx-small);
-	}
-
-	.theme-toggle {
-		display: flex;
+		color: var(--color-text-muted);
 		cursor: pointer;
-		color: inherit;
-		border: none;
-		background-color: transparent;
+		text-decoration: none;
+		padding: var(--spacing-xx-small);
 	}
 </style>

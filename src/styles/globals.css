@@ -1,6 +1,4 @@
-@layer reset;
-@layer variables;
-@layer theme;
+@layer reset, variables, theme;
 
 @import url('./_reset.css') layer(reset);
 @import url('./_variables.css') layer(variables);
@@ -9,5 +7,16 @@
 body {
   font-family: var(--font-family-primary);
   font-size: 16px;
-  transition: color 500ms, background-color 500ms ease;
+  transition: color 250ms, background-color 250ms ease;
+  background-color: var(--color-background);
+}
+
+h2 {
+  font-weight: var(--font-weight-semi-bold);
+  font-size: var(--font-size-heading-2);
+}
+
+h3 {
+  font-size: var(--font-size-heading-2);
+  font-weight: var(--font-weight-regular);
 }
