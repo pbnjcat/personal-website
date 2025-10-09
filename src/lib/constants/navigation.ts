@@ -5,11 +5,11 @@ interface NavLink {
 }
 
 export const navLinks: NavLink[] = [
-    {
-        label: 'work',
-        path: '/',
-        anchor: '#work'
-    },
+    // {
+    //     label: 'work',
+    //     path: '/',
+    //     anchor: '#work'
+    // },
     {
         label: 'about',
         path: '/',

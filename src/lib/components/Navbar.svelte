@@ -1,41 +1,105 @@
 <script lang="ts">
 	import { navLinks } from '$lib/constants/navigation';
+	import { onMount } from 'svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
+
+	let nav: HTMLElement | undefined = $state();
+	let lastPositionY = 0;
+	let scrollingToLink = false;
+	let scrollTimeout = 0;
+
+	onMount(() => {
+		function handleScroll() {
+			if (scrollingToLink) return;
+
+			const currentPositionY = window.scrollY;
+
+			if (currentPositionY > lastPositionY && currentPositionY > 80) {
+				nav?.classList.remove('navbar--active');
+			} else if (currentPositionY < lastPositionY || currentPositionY <= 80) {
+				nav?.classList.add('navbar--active');
+			} else {
+				nav?.classList.add('navbar--active');
+			}
+
+			lastPositionY = currentPositionY;
+		}
+		window.addEventListener('scroll', handleScroll);
+
+		return () => window.removeEventListener('scroll', handleScroll);
+	});
+
+	function scrollToSection(event: MouseEvent, anchor?: string) {
+		if (!anchor) {
+			return;
+		}
+		event.preventDefault();
+
+		scrollingToLink = true;
+
+		const targetElement = document.querySelector(anchor);
+
+		if (scrollTimeout) {
+			clearTimeout(scrollTimeout);
+		}
+
+		targetElement?.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start'
+		});
+
+		scrollTimeout = window.setTimeout(() => {
+			scrollingToLink = false;
+			scrollTimeout = 1;
+		}, 750);
+	}
 </script>
 
-<nav class="navbar" aria-label="Main navigation">
+<header class="navbar navbar--active" bind:this={nav}>
 	<div class="navbar__brand">
 		<a href="/" aria-label="logo back to home page">Logo</a>
 	</div>
-	<div>
+	<nav aria-label="Main navigation">
 		<ul class="navbar__menu">
 			{#each navLinks as link, i (link)}
 				<li>
-					<a class="navbar__link" href={link.path} aria-label={link.label}>{link.label}</a>
+					<a
+						class="navbar__link"
+						href={link.anchor}
+						onclick={(e) => scrollToSection(e, link.anchor)}
+						aria-label={link.label}>{link.label}</a
+					>
 				</li>
 			{/each}
 			<li>
 				<ThemeToggle />
 			</li>
 		</ul>
-	</div>
-</nav>
+	</nav>
+</header>
 
 <style>
 	.navbar {
 		display: flex;
-		position: relative;
+		position: fixed;
 		justify-content: space-between;
-		align-items: center;
-		height: var(--spacing-xx-large);
-		padding: var(--spacing-x-large) 0;
-		padding-inline: var(--spacing-xx-small);
+		width: 100%;
+		padding: var(--spacing-large);
+		background-color: var(--color-background);
+		transition: all 250ms;
+		top: -4rem;
+		z-index: 10;
+	}
+
+	.navbar--active {
+		top: 0;
 	}
 
 	.navbar__brand {
 		display: flex;
 		text-decoration: none;
 		a {
+			align-content: center;
 			color: var(--color-text);
 			text-decoration: none;
 		}
@@ -43,17 +107,15 @@
 
 	.navbar__menu {
 		display: flex;
-		position: sticky;
 		list-style-type: none;
 		flex-direction: row;
 		width: 100%;
-		gap: var(--spacing-x-small);
+		gap: var(--spacing-medium);
 	}
 
 	.navbar__link {
 		color: var(--color-text-muted);
 		cursor: pointer;
 		text-decoration: none;
-		padding: var(--spacing-xx-small);
 	}
 </style>

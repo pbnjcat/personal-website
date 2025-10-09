@@ -1,7 +1,6 @@
 <script lang="ts">
 	import BrandGithubFilled from '@tabler/icons-svelte/icons/brand-github-filled';
 	import BrandLinkedin from '@tabler/icons-svelte/icons/brand-linkedin';
-	import Mail from '@tabler/icons-svelte/icons/mail';
 </script>
 
 <section class="hero">
@@ -14,22 +13,18 @@
 	</div>
 	<ul class="social-media" aria-label="Social media links">
 		<li class="social-media__item">
-			<a class="social-media__link" href="/" aria-label="GitHub profile">
+			<a class="social-media__link" href="https://github.com/pbnjcat" aria-label="GitHub profile">
 				<BrandGithubFilled size={24} />
 			</a>
 		</li>
 		<li class="social-media__item">
-			<a class="social-media__link" href="/" aria-label="LinkedIn profile">
+			<a class="social-media__link" href="https://www.linkedin.com/in/randy-li-853237199/" aria-label="LinkedIn profile">
 				<BrandLinkedin size={24} />
 			</a>
 		</li>
-		<li class="social-media__item">
-			<a class="social-media__link" href="/" aria-label="Email to">
-				<Mail size={24} />
-			</a>
-		</li>
+		<!-- Add email system future feature -->
 	</ul>
-	<button class="hero__button">View Resume</button>
+	<button class="hero__button" aria-label="View resume pdf">View Resume</button>
 </section>
 <section id="about" aria-label="About me">
 	<h2 class="hero__subtitle">About</h2>
@@ -44,8 +39,8 @@
 
 <style>
 	.hero {
-		margin: var(--spacing-large) 0;
 		padding: var(--spacing-xx-large) 0;
+		padding-top: calc(4rem + var(--spacing-xx-large));
 	}
 
 	.hero__title {
@@ -77,10 +72,11 @@
 		padding: var(--spacing-x-small) var(--spacing-medium);
 		margin-bottom: var(--spacing-medium);
 		cursor: pointer;
+		transition: all 0.2s ease;
 	}
 
 	.hero__button:hover {
-		transform: translateY(-2px);
+		transform: translate(2px, -2px);
 	}
 
 	.social-media {
@@ -102,7 +98,7 @@
 	}
 
 	.social-media__link:hover {
-		transform: translateY(-2px);
+		transform: translate(2px, -2px);
 	}
 
 	#about {

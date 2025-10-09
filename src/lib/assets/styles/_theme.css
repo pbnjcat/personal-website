@@ -4,13 +4,17 @@ html[data-theme="light"] {
   --color-text: var(--color-text-default);
   --color-button-border: var(--color-text-default);
   --color-text-muted: var(--color-text-secondary-on-light);
+  --background-color-card: var(--background-color-card-on-light);
+  --color-primary: var(--color-primary-on-light);
 }
 
 html[data-theme='dark'] {
   --color-background: var(--background-color-on-dark);
+  --color-primary: var(--color-primary-on-dark);
   --color-text: var(--color-text-inversed);
   --color-button-border: var(--color-text-inversed);
   --color-text-muted: var(--color-text-secondary-on-dark);
+  --background-color-card: var(--background-color-card-on-dark);
 }
 
 html[data-theme='dark'] [data-icon='sun'] {
