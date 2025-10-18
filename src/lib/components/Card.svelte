@@ -28,11 +28,12 @@
 			default: string;
 		}
 	)?.default;
+	
 </script>
 
 <div class="card">
 	<div class="card__image">
-		<enhanced:img src={selectedImage} alt={title} />
+		<enhanced:img src='/src/lib/assets/images/tom-in-a-suit.jpg' alt={title} />
 	</div>
 	<h3 class="card__title">
 		<a href={link} target="_blank">
