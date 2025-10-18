@@ -6,8 +6,8 @@
 
 <footer>
 	<p class="footer__description">
-		Designed in Figma, built with SvelteKit, styled in PostCSS, and deployed on Vercel by yours
-		truly. Typeface used is Inter.
+		Website designed in Figma, built with SvelteKit, PostCSS, deployed on Github Pages,
+		and powered by Sveltia. Typeface used for all text is Inter.
 	</p>
 	<div class="footer__copyright">
 		<Copyright size={24} stroke={2} />

@@ -23,8 +23,9 @@
 </script>
 
 <button class="theme-toggle" aria-label="toggle theme" onclick={() => switchTheme()}>
-	<Sun size={24} stroke={2} data-icon="sun" />
 	<Moon size={24} stroke={2} data-icon="moon" />
+
+	<Sun size={24} stroke={2} data-icon="sun" />
 </button>
 
 <style>
@@ -37,4 +38,15 @@
 		background-color: transparent;
 	}
 
+	:global([data-icon='moon']) {
+		display: none;
+	}
+
+	:global(html[data-theme='dark'] [data-icon='moon']) {
+		display: block;
+	}
+
+	:global(html[data-theme='dark'] [data-icon='sun']) {
+		display: none;
+	}
 </style>

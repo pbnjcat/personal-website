@@ -3,10 +3,10 @@ backend:
   name: github
   repo: pbnjcat/personal-website
   branch: main
-  base_url: sveltia-cms-auth.morphlingblade88.workers.dev
-
+  base_url: https://sveltia-cms-auth.morphlingblade88.workers.dev
+  skip_ci: true
+logo_url: "favicon.svg"
 media_folder: "src/lib/assets/images"
-public_folder: "/images"
 
 collections:
   - name: projects
@@ -19,11 +19,11 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Thumbnail", name: "image", widget: "image" }
+      - { label: "Date", name: startDate, widget: datetime, time_format: false }
       - {
           label: "Description",
           name: "description",
           widget: "text",
           required: true,
         }
-      - { label: "Technologies", name: "tags", widget: "list", required: true }
       - { label: "Live Demo", name: "demo", widget: "string", required: false }

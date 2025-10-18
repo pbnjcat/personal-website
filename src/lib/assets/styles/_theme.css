@@ -17,18 +17,18 @@ html[data-theme='dark'] {
   --background-color-card: var(--background-color-card-on-dark);
 }
 
-html[data-theme='dark'] [data-icon='sun'] {
+html[data-theme='dark'] button[data-icon='sun'] {
   display: none;
 }
 
-html[data-theme='light'] [data-icon='sun'] {
+html[data-theme='light'] button[data-icon='sun'] {
   display: block;
 }
 
-html[data-theme='light'] [data-icon='moon'] {
+html[data-theme='light'] button[data-icon='moon'] {
   display: none;
 }
 
-html[data-theme='dark'] [data-icon='moon'] {
+html[data-theme='dark'] button[data-icon='moon'] {
   display: block;
 }

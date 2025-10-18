@@ -1,47 +1,45 @@
 <script lang="ts">
 	const {
-		name,
+		title,
 		description,
 		image,
+		date,
 		link
 	}: {
-		name: string;
+		title: string;
 		description: string;
 		image: string;
+		date: Date;
 		link: string;
 	} = $props();
 
-	type imageName = string;
-
-	interface ImageModules {
-		default: string;
-		[key: string]: unknown;
-	}
-
-	const imageModules: Record<imageName, ImageModules> = import.meta.glob(
+	const imageModules = import.meta.glob(
 		'$lib/assets/images/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}',
 		{
 			eager: true,
-			query: {
-				enhanced: true
-			}
+			query: { enhanced: true }
 		}
 	);
-	const imagePath: string =
-		Object.entries(imageModules).find(([path]) => path.split('/').pop()?.startsWith(image))?.[1]
-			.default ?? '';
 
+	const imageFile = image.split('/').pop() ?? '';
+
+	const selectedImage = (
+		Object.entries(imageModules).find(([path]) => path.includes(imageFile))?.[1] as {
+			default: string;
+		}
+	)?.default;
 </script>
 
 <div class="card">
 	<div class="card__image">
-		<enhanced:img src={imagePath} alt={name} />
+		<enhanced:img src={selectedImage} alt={title} />
 	</div>
 	<h3 class="card__title">
 		<a href={link} target="_blank">
-			{name}
+			{title}
 		</a>
 	</h3>
+	<span>{date}</span>
 	<p class="card__description">{description}</p>
 </div>
 

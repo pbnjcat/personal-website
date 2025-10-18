@@ -33,11 +33,10 @@
 <Footer />
 
 <style>
-
 	main {
 		padding: 0 1.25rem;
 		margin: 0 auto;
-		max-width: 80rem;
+		max-width: 70rem;
 	}
 
 	@media (min-width: 640px) {

@@ -1,21 +1,34 @@
 <script lang="ts">
 	import Hero from '$lib/components/Hero.svelte';
 	import Card from '$lib/components/Card.svelte';
+	import type { PageProps } from './$types';
+	let { data }: PageProps = $props();
+	const projects = data.projects;
 </script>
 
 <Hero />
 <section id="projects" aria-label="My projects">
 	<h2>Projects</h2>
 	<ul class="cards">
-		<li>
-			<Card
-				name="Hill in denmark"
-				description="Picture of denmark on the grassy hills. Foggy background in the morning."
-				image="image1"
-				link="./"
-			/>
-		</li>
+		{#each projects as project}
+			<li>
+				<Card
+					title={project.title}
+					date={project.date}
+					description={project.description}
+					image={project.image}
+					link={project.demo}
+				/>
+			</li>
+		{/each}
 	</ul>
+</section>
+
+<section id="work" aria-label="My work">
+	<h2 class="section__title">Work</h2>
+	<p></p>
+	<p>Placeholder</p>
+	<p class="description">WIP</p>
 </section>
 
 <section id="education" aria-label="My education">

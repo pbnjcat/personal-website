@@ -18,19 +18,22 @@
 			</a>
 		</li>
 		<li class="social-media__item">
-			<a class="social-media__link" href="https://www.linkedin.com/in/randy-li-853237199/" aria-label="LinkedIn profile">
+			<a
+				class="social-media__link"
+				href="https://www.linkedin.com/in/randy-li-853237199/"
+				aria-label="LinkedIn profile"
+			>
 				<BrandLinkedin size={24} />
 			</a>
 		</li>
-		<!-- Add email system future feature -->
 	</ul>
 	<button class="hero__button" aria-label="View resume pdf">View Resume</button>
 </section>
 <section id="about" aria-label="About me">
 	<h2 class="hero__subtitle">About</h2>
 	<p class="hero__description">
-		I am a full-stack web developer with a passion for JavaScript. The unique blend of creativity
-		and logic is what fuels my excitement and passion for web development.
+		I am a programmer with a passion for JavaScript. The blend of creativity and logic is what fuels
+		my enjoyment for web development.
 	</p>
 	<p class="hero__description">
 		When I am not at my computer I enjoy spending my time reading, hiking, and listening to music.
@@ -93,7 +96,7 @@
 		color: var(--color-text-muted);
 		text-decoration: none;
 		border-radius: 0.5rem;
-		padding: var(--spacing-x-small);
+		padding: var(--spacing-small);
 		transition: all 0.2s ease;
 	}
 
