@@ -1,0 +1,7 @@
+{
+  "title": "Tom in a suit",
+  "image": "/src/lib/assets/images/tom-in-a-suit.jpg",
+  "startDate": "2025-10-17",
+  "description": "This is Tom from Tom and Jerry in a nice suit. Also a test for Sveltia CMS.",
+  "demo": "https://github.com/sveltia/sveltia-cms"
+}
