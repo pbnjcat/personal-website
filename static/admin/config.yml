@@ -1,29 +1,106 @@
-# /admin/config.yml
 backend:
   name: github
   repo: pbnjcat/personal-website
   branch: main
-  base_url: sveltia-cms-auth.morphlingblade88.workers.dev
-
+  base_url: https://sveltia-cms-auth.morphlingblade88.workers.dev
+  skip_ci: true
 media_folder: "src/lib/assets/images"
-public_folder: "/images"
 
 collections:
-  - name: projects
-    label: Projects
+  - label: Projects
+    name: projects
     label_singular: Project
     folder: "src/lib/data/projects"
     extension: json
     slug: "{{slug}}"
     create: true
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Thumbnail", name: "image", widget: "image" }
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Thumbnail", name: "image", widget: "image", required: true }
+      - {
+          label: "Date",
+          name: startDate,
+          widget: datetime,
+          time_format: false,
+          date_format: MM.YY,
+        }
       - {
           label: "Description",
           name: "description",
           widget: "text",
           required: true,
         }
-      - { label: "Technologies", name: "tags", widget: "list", required: true }
       - { label: "Live Demo", name: "demo", widget: "string", required: false }
+  - label: Experience
+    name: experience
+    label_singular: Experience
+    files:
+      - label: Work
+        name: work
+        file: src/lib/data/work.json
+        fields:
+          - label: Work
+            name: work
+            widget: list
+            fields:
+              - label: Employer
+                name: employer
+                widget: string
+                required: true
+
+              - label: Title
+                name: title
+                widget: string
+                required: true
+
+              - label: Start Date
+                name: startDate
+                widget: datetime
+                time_format: false
+                required: false
+
+              - label: End Date
+                name: endDate
+                widget: datetime
+                time_format: false
+                required: false
+
+              - label: Description
+                name: description
+                widget: text
+                required: true
+
+      - label: Education
+        name: education
+        file: src/lib/data/education.json
+        fields:
+          - label: Education
+            name: education
+            widget: list
+            fields:
+              - label: School
+                name: school
+                widget: string
+                required: true
+
+              - label: Study
+                name: study
+                widget: string
+                required: true
+
+              - label: Start Date
+                name: startDate
+                widget: datetime
+                time_format: false
+                required: false
+
+              - label: End Date
+                name: endDate
+                widget: datetime
+                time_format: false
+                required: false
+
+              - label: Description
+                name: description
+                widget: text
+                required: true
