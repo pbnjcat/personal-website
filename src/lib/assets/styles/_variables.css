@@ -19,6 +19,7 @@
     --font-weight-semi-bold: 600;
     --font-weight-extra-bold: 800;
 
+    --font-size-body-small: 0.75rem;
     --font-size-body-normal: 1rem;
     --font-size-heading-1: 1.75rem;
     --font-size-heading-2: 1.2rem;
@@ -35,6 +36,8 @@
 
     /* shadow */
     --card-shadow: 0 8px 8px 0 rgb(34, 36, 37);
+
+    --navbar-height: 4rem;
 }
 
 @font-face {
