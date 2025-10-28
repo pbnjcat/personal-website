@@ -57,7 +57,7 @@
 
 <header class="navbar navbar--active" bind:this={nav}>
 	<div class="navbar__brand">
-		<a href="/" aria-label="logo back to home page">Logo</a>
+		<a href="#top" aria-label="logo back to home page">Logo</a>
 	</div>
 	<nav aria-label="Main navigation">
 		<ul class="navbar__menu">
@@ -83,11 +83,12 @@
 		display: flex;
 		position: fixed;
 		justify-content: space-between;
-		width: 100%;
+		left: 0;
+		right: 0;
 		padding: var(--spacing-large);
 		background-color: var(--color-background);
 		transition: all 250ms;
-		top: -4rem;
+		top: -5rem;
 		z-index: 10;
 	}
 
@@ -109,7 +110,6 @@
 		display: flex;
 		list-style-type: none;
 		flex-direction: row;
-		width: 100%;
 		gap: var(--spacing-medium);
 	}
 

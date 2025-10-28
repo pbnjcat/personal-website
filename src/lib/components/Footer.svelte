@@ -6,8 +6,7 @@
 
 <footer>
 	<p class="footer__description">
-		Designed in Figma, built with SvelteKit, styled in PostCSS, and deployed on Vercel by yours
-		truly. Typeface used is Inter.
+		Website designed in Figma, built with SvelteKit, and managed using Sveltia.
 	</p>
 	<div class="footer__copyright">
 		<Copyright size={24} stroke={2} />
@@ -19,30 +18,17 @@
 
 <style>
 	footer {
-		padding: var(--spacing-large);
-		margin: 0 auto;
-		max-width: 80rem;
-	}
-
-	@media (min-width: 640px) {
-		footer {
-			padding-inline: 2rem;
-		}
-	}
-
-	@media (min-width: 1024px) {
-		footer {
-			padding-inline: 3rem;
-		}
+		padding-top: var(--spacing-xx-large);
 	}
 
 	.footer__description {
-		padding-bottom: 1.5rem;
+		font-size: var(--font-size-body-small);
+		padding-bottom: var(--spacing-large);
 		color: var(--color-text-muted);
 	}
 	.footer__copyright {
-		padding-bottom: 1rem;
 		display: flex;
+		padding-bottom: var(--spacing-small);
 		color: var(--color-text-muted);
 	}
 </style>
