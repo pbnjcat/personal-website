@@ -4,33 +4,39 @@ backend:
   branch: main
   base_url: https://sveltia-cms-auth.morphlingblade88.workers.dev
   skip_ci: true
-media_folder: "src/lib/assets/images"
+
+media_folder: src/lib/assets/images
+public_folder: /src/lib/assets/images
 
 collections:
   - label: Projects
     name: projects
     label_singular: Project
-    folder: "src/lib/data/projects"
+    folder: src/lib/data/projects
     extension: json
     slug: "{{slug}}"
     create: true
     fields:
-      - { label: "Title", name: "title", widget: "string", required: true }
-      - { label: "Thumbnail", name: "image", widget: "image", required: true }
-      - {
-          label: "Date",
-          name: startDate,
-          widget: datetime,
-          time_format: false,
-          date_format: MM.YY,
-        }
-      - {
-          label: "Description",
-          name: "description",
-          widget: "text",
-          required: true,
-        }
-      - { label: "Live Demo", name: "demo", widget: "string", required: false }
+      - label: Title
+        name: title
+        widget: string
+        required: true
+      - label: Thumbnail
+        name: image
+        widget: image
+        required: true
+      - label: Date
+        name: startDate
+        widget: datetime
+        time_format: false
+      - label: Description
+        name: description
+        widget: text
+        required: true
+      - label: Live Demo
+        name: demo
+        widget: string
+        required: false
   - label: Experience
     name: experience
     label_singular: Experience
@@ -47,29 +53,24 @@ collections:
                 name: employer
                 widget: string
                 required: true
-
               - label: Title
                 name: title
                 widget: string
                 required: true
-
               - label: Start Date
                 name: startDate
                 widget: datetime
                 time_format: false
                 required: false
-
               - label: End Date
                 name: endDate
                 widget: datetime
                 time_format: false
                 required: false
-
               - label: Description
                 name: description
                 widget: text
                 required: true
-
       - label: Education
         name: education
         file: src/lib/data/education.json
@@ -82,25 +83,34 @@ collections:
                 name: school
                 widget: string
                 required: true
-
               - label: Study
                 name: study
                 widget: string
                 required: true
-
               - label: Start Date
                 name: startDate
                 widget: datetime
                 time_format: false
                 required: false
-
               - label: End Date
                 name: endDate
                 widget: datetime
                 time_format: false
                 required: false
-
               - label: Description
                 name: description
                 widget: text
                 required: true
+  - label: Resume
+    name: resume
+    files:
+      - label: Resume
+        name: resume
+        file: src/lib/data/resume.json
+        media_folder: /static/uploads/
+        public_folder: /uploads
+        fields:
+          - label: Resume PDF
+            name: resumeFile
+            widget: file
+            required: false
