@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { navLinks } from '$lib/constants/navigation';
 	import { onMount } from 'svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
 
@@ -8,8 +7,30 @@
 	let scrollingToLink = false;
 	let scrollTimeout = 0;
 
+	interface NavLink {
+		label: string;
+		path: string;
+		anchor?: string;
+	}
+	const navLinks: NavLink[] = [
+		{
+			label: 'projects',
+			path: '/',
+			anchor: '#projects'
+		},
+		{
+			label: 'work',
+			path: '/',
+			anchor: '#work'
+		}
+	];
+
 	onMount(() => {
+		const isSmallScreen = window.matchMedia('(max-width: 720px)');
+
 		function handleScroll() {
+			if (!isSmallScreen.matches) return;
+
 			if (scrollingToLink) return;
 
 			const currentPositionY = window.scrollY;
@@ -18,12 +39,11 @@
 				nav?.classList.remove('navbar--active');
 			} else if (currentPositionY < lastPositionY || currentPositionY <= 80) {
 				nav?.classList.add('navbar--active');
-			} else {
-				nav?.classList.add('navbar--active');
 			}
 
 			lastPositionY = currentPositionY;
 		}
+
 		window.addEventListener('scroll', handleScroll);
 
 		return () => window.removeEventListener('scroll', handleScroll);
@@ -57,7 +77,7 @@
 
 <header class="navbar navbar--active" bind:this={nav}>
 	<div class="navbar__brand">
-		<a href="#top" aria-label="logo back to home page">Logo</a>
+		<a href="#top" aria-label="logo back to home page">Randy</a>
 	</div>
 	<nav aria-label="Main navigation">
 		<ul class="navbar__menu">
@@ -88,8 +108,15 @@
 		padding: var(--spacing-large);
 		background-color: var(--color-background);
 		transition: all 250ms;
+		backdrop-filter: blur(1px);
 		top: -5rem;
 		z-index: 10;
+	}
+
+	@media (min-width: 720px) {
+		.navbar {
+			top: 0;
+		}
 	}
 
 	.navbar--active {
@@ -110,7 +137,7 @@
 		display: flex;
 		list-style-type: none;
 		flex-direction: row;
-		gap: var(--spacing-medium);
+		gap: var(--spacing-large);
 	}
 
 	.navbar__link {

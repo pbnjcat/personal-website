@@ -3,13 +3,11 @@
 		title,
 		description,
 		image,
-		date,
 		link
 	}: {
 		title: string;
 		description: string;
 		image: string;
-		date: Date;
 		link: string;
 	} = $props();
 
@@ -50,7 +48,7 @@
 
 <style>
 	.card {
-		border-radius: var(--spacing-small);
+		border-radius: var(--spacing-x-small);
 		display: flex;
 		flex-direction: column;
 		position: relative;
@@ -65,6 +63,7 @@
 		display: flex;
 		align-items: center;
 		color: var(--color-text);
+		text-decoration: underline;
 		padding: var(--spacing-medium);
 		padding-bottom: var(--spacing-x-small);
 	}

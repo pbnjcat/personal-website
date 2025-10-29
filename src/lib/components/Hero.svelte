@@ -2,6 +2,7 @@
 	import BrandGithubFilled from '@tabler/icons-svelte/icons/brand-github-filled';
 	import BrandLinkedin from '@tabler/icons-svelte/icons/brand-linkedin';
 	import { resolve } from '$app/paths';
+	import resumeData from '$lib/data/resume.json';
 </script>
 
 <section id="hero" aria-label="Welcome section">
@@ -36,25 +37,17 @@
 			</a>
 		</li>
 	</ul>
-	<a class="hero__cta" href={""} rel="noopener noreferrer" target="_blank"
-		>View Resume</a
+	<a
+		class="hero__cta"
+		href={resolve(resumeData.resumeFile as '/')}
+		rel="noopener noreferrer"
+		target="_blank">View Resume</a
 	>
-</section>
-<section id="about" aria-label="About me">
-	<h2 class="hero__subtitle">About</h2>
-	<p class="hero__description">
-		I am a programmer with a passion for JavaScript. The blend of creativity and logic is what fuels
-		my enjoyment for web development.
-	</p>
-	<p class="hero__description">
-		When I am not at my computer I enjoy spending my time reading, hiking, and listening to music.
-	</p>
 </section>
 
 <style>
 	#hero {
 		padding-top: calc(var(--navbar-height) + var(--spacing-xx-large));
-		height: 90vh;
 	}
 
 	.hero__title {
@@ -78,9 +71,8 @@
 
 	.hero__cta {
 		display: inline-block;
-		background-color: transparent;
+		background-color: var(--color-primary);
 		text-decoration: none;
-		border: 1px solid var(--color-text);
 		color: var(--color-text);
 		border-radius: 0.25rem;
 		padding: var(--spacing-x-small) var(--spacing-medium);

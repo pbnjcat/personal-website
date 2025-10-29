@@ -9,6 +9,29 @@
 </script>
 
 <Hero />
+<section id="about" aria-label="About me">
+	<h2 class="hero__subtitle">About</h2>
+	<p class="hero__description">
+		I am a developer who loves observing how people use products and finding ways to improve. That
+		is why I love the unique mix of creativity and logic that goes into web development. When not at
+		my computer, I enjoy reading, fishing, and listening to music.
+	</p>
+</section>
+<section id="projects" aria-label="My projects">
+	<h2>Projects</h2>
+	<ul class="cards">
+		{#each projects as project}
+			<li>
+				<Card
+					title={project.title}
+					description={project.description}
+					image={project.image}
+					link={project.demo}
+				/>
+			</li>
+		{/each}
+	</ul>
+</section>
 <section id="work" aria-label="My work">
 	<h2 class="section__title">Work</h2>
 	{#each work as job}
@@ -23,23 +46,6 @@
 		>
 		<p class="description">{job.description}</p>
 	{/each}
-</section>
-
-<section id="projects" aria-label="My projects">
-	<h2>Projects</h2>
-	<ul class="cards">
-		{#each projects as project}
-			<li>
-				<Card
-					title={project.title}
-					date={project.startDate}
-					description={project.description}
-					image={project.image}
-					link={project.demo}
-				/>
-			</li>
-		{/each}
-	</ul>
 </section>
 
 <section id="education" aria-label="My education">
@@ -60,12 +66,12 @@
 
 <style>
 	:global(section) {
-		padding-bottom: var(--spacing-xx-large);
+		padding: var(--spacing-x-large) 0;
 	}
 
 	:global(h2) {
 		color: var(--color-text);
-		padding-bottom: var(--spacing-large);
+		padding-bottom: var(--spacing-medium);
 	}
 
 	h3 {
@@ -90,8 +96,8 @@
 	}
 
 	.cards {
-		/* display: grid;
-		grid-gap: var(--spacing-large); */
+		display: grid;
+		grid-gap: var(--spacing-large);
 		padding: 0;
 		list-style: none;
 	}
