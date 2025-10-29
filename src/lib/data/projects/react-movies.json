@@ -1,0 +1,7 @@
+{
+  "title": "React Movies",
+  "image": "/src/lib/assets/images/Screenshot 2025-10-28 at 19-24-53 React App.png",
+  "startDate": "2023-10-28",
+  "description": "Movie and TV Series browsing app with React and Styled Components, fetching real-time data through The Movie Database",
+  "demo": "https://isnt-pbnjcat-awesome.netlify.app/"
+}
