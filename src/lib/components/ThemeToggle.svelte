@@ -31,11 +31,13 @@
 <style>
 	.theme-toggle {
 		display: flex;
-		padding: 0;
+		border-radius: var(--spacing-x-small);
+		padding: var(--spacing-x-small);
 		cursor: pointer;
 		color: var(--color-text-muted);
 		border: none;
 		background-color: transparent;
+		transition: color 250ms;
 	}
 
 	:global([data-icon='moon']) {
@@ -48,5 +50,11 @@
 
 	:global(html[data-theme='dark'] [data-icon='sun']) {
 		display: none;
+	}
+
+	@media (hover: hover) {
+		.theme-toggle:hover {
+			background-color: var(--color-background-row-selected);
+		}
 	}
 </style>

@@ -2,16 +2,17 @@
 	import { onMount } from 'svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
 
-	let nav: HTMLElement | undefined = $state();
+	let nav = $state<HTMLElement>();
 	let lastPositionY = 0;
-	let scrollingToLink = false;
-	let scrollTimeout = 0;
+	let scrollingToSection = false;
+	let scrollResetTimer: number;
 
 	interface NavLink {
 		label: string;
 		path: string;
 		anchor?: string;
 	}
+
 	const navLinks: NavLink[] = [
 		{
 			label: 'projects',
@@ -28,10 +29,11 @@
 	onMount(() => {
 		const isSmallScreen = window.matchMedia('(max-width: 720px)');
 
-		function handleScroll() {
+		// navbar hiding on scroll down
+		function hideNav() {
 			if (!isSmallScreen.matches) return;
 
-			if (scrollingToLink) return;
+			if (scrollingToSection) return;
 
 			const currentPositionY = window.scrollY;
 
@@ -40,55 +42,44 @@
 			} else if (currentPositionY < lastPositionY || currentPositionY <= 80) {
 				nav?.classList.add('navbar--active');
 			}
-
 			lastPositionY = currentPositionY;
 		}
 
-		window.addEventListener('scroll', handleScroll);
+		function pauseHideNavWhenScrolling(event: MouseEvent) {
+			const anchorElement = (event.target as HTMLElement).closest('a');
 
-		return () => window.removeEventListener('scroll', handleScroll);
+			if (!anchorElement) {
+				return;
+			}
+
+			if (scrollResetTimer) {
+				clearTimeout(scrollResetTimer);
+			}
+
+			scrollingToSection = true;
+
+			scrollResetTimer = window.setTimeout(() => {
+				scrollingToSection = false;
+			}, 700);
+		}
+
+		window.addEventListener('scroll', hideNav);
+		document.addEventListener('click', pauseHideNavWhenScrolling);
+
+		return () => {
+			window.removeEventListener('scroll', hideNav);
+			document.removeEventListener('click', pauseHideNavWhenScrolling);
+		};
 	});
-
-	function scrollToSection(event: MouseEvent, anchor?: string) {
-		if (!anchor) {
-			return;
-		}
-		event.preventDefault();
-
-		scrollingToLink = true;
-
-		const targetElement = document.querySelector(anchor);
-
-		if (scrollTimeout) {
-			clearTimeout(scrollTimeout);
-		}
-
-		targetElement?.scrollIntoView({
-			behavior: 'smooth',
-			block: 'start'
-		});
-
-		scrollTimeout = window.setTimeout(() => {
-			scrollingToLink = false;
-			scrollTimeout = 1;
-		}, 750);
-	}
 </script>
 
 <header class="navbar navbar--active" bind:this={nav}>
-	<div class="navbar__brand">
-		<a href="#top" aria-label="logo back to home page">Randy</a>
-	</div>
-	<nav aria-label="Main navigation">
+	<a class="navbar__logo" href="#top" aria-label="logo link back to top">Randy</a>
+	<nav aria-label="page navigation">
 		<ul class="navbar__menu">
 			{#each navLinks as link, i (link)}
 				<li>
-					<a
-						class="navbar__link"
-						href={link.anchor}
-						onclick={(e) => scrollToSection(e, link.anchor)}
-						aria-label={link.label}>{link.label}</a
-					>
+					<a class="navbar__link" href={link.anchor} aria-label={link.label}>{link.label}</a>
 				</li>
 			{/each}
 			<li>
@@ -99,13 +90,18 @@
 </header>
 
 <style>
+	:global(#projects, #work, #top) {
+		scroll-margin-top: 4rem;
+	}
+
 	.navbar {
 		display: flex;
 		position: fixed;
 		justify-content: space-between;
+		width: 100%;
 		left: 0;
 		right: 0;
-		padding: var(--spacing-large);
+		padding: var(--spacing-medium);
 		background-color: var(--color-background);
 		transition: all 250ms;
 		backdrop-filter: blur(1px);
@@ -123,26 +119,35 @@
 		top: 0;
 	}
 
-	.navbar__brand {
-		display: flex;
+	.navbar__logo {
+		display: block;
 		text-decoration: none;
-		a {
-			align-content: center;
-			color: var(--color-text);
-			text-decoration: none;
-		}
+		align-content: center;
+		color: var(--color-text-muted);
+		text-decoration: none;
 	}
 
 	.navbar__menu {
 		display: flex;
 		list-style-type: none;
+		align-items: center;
 		flex-direction: row;
-		gap: var(--spacing-large);
+		gap: var(--spacing-x-small);
 	}
 
 	.navbar__link {
 		color: var(--color-text-muted);
+		border-radius: var(--spacing-x-small);
+		padding: var(--spacing-x-small);
 		cursor: pointer;
 		text-decoration: none;
+		transition: color 150ms ease;
+	}
+
+	@media (hover: hover) {
+		.navbar__link:hover {
+			color: var(--color-primary);
+			background-color: var(--color-background-row-selected);
+		}
 	}
 </style>
