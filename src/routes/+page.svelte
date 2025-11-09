@@ -2,6 +2,7 @@
 	import Hero from '$lib/components/Hero.svelte';
 	import Card from '$lib/components/Card.svelte';
 	import type { PageProps } from './$types';
+
 	let { data }: PageProps = $props();
 	const projects = data.projects;
 	const work = data.work;
@@ -12,23 +13,21 @@
 <section id="about" aria-label="About me">
 	<h2 class="hero__subtitle">About</h2>
 	<p class="hero__description">
-		I am a developer who loves observing how people use products and finding ways to improve. That
-		is why I love the unique mix of creativity and logic that goes into web development. When not at
-		my computer, I enjoy reading, fishing, and listening to music.
+		I am someone who loves observing how people interact with products and finding ways to improve
+		them. That is why I love the unique mix of creativity and logic that goes into web development.
+		When not at my computer, I enjoy reading, fishing, and listening to music.
 	</p>
 </section>
 <section id="projects" aria-label="My projects">
 	<h2>Projects</h2>
 	<ul class="cards">
 		{#each projects as project}
-			<li>
-				<Card
-					title={project.title}
-					description={project.description}
-					image={project.image}
-					link={project.demo}
-				/>
-			</li>
+			<Card
+				title={project.title}
+				description={project.description}
+				image={project.image}
+				link={project.demo}
+			/>
 		{/each}
 	</ul>
 </section>
@@ -82,6 +81,10 @@
 		color: var(--color-text-muted);
 	}
 
+	p {
+		color: var(--color-text-muted);
+	}
+
 	span {
 		color: var(--color-text-muted);
 		font-size: var(--font-size-body-small);
@@ -91,14 +94,13 @@
 		color: var(--color-text-muted);
 	}
 
-	:global(p) {
-		color: var(--color-text-muted);
-	}
-
 	.cards {
 		display: grid;
-		grid-gap: var(--spacing-large);
-		padding: 0;
+		gap: var(--spacing-large);
+		padding: 0 var(--spacing-xx-small);
 		list-style: none;
+		width: 100%;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		align-items: start;
 	}
 </style>

@@ -34,7 +34,8 @@
 	.wrapper {
 		display: grid;
 		height: 100%;
-		padding: var(--spacing-medium);
+		margin: 0 auto;
+		max-width: min(1000px, 100% - 2rem);
 		grid-template-areas:
 			'main'
 			'footer';
