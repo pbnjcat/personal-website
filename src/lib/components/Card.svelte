@@ -192,6 +192,11 @@
 		.card__content:hover {
 			transform: none;
 		}
+	}
 
+	@media (any-hover: none) and (prefers-reduced-motion: reduce) {
+		.card__title {
+			text-decoration: underline;
+		}
 	}
 </style>
