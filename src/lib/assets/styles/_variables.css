@@ -1,18 +1,26 @@
 :root {
-    /* colors */
-    --background-color-on-light: oklch(0.968 0.0059 239.82);
+    /* background and text body colors */
+    --background-color-on-light: oklch(0.9243 0.001 310.33);
     --color-text-default: oklch(0.2103 0.0059 285.89);
-    --color-text-secondary-on-light: oklch(0.3703 0.0119 285.81);
-    --background-color-on-dark: oklch(0.2103 0.0059 285.89);
+
+    --color-text-muted-on-light: oklch(0.3003 0.0119 285.81);
+    --background-color-on-dark: oklch(0.1765 0.0567 258.26);
+
     --color-text-inversed: oklch(0.968 0.0059 239.82);
-    --color-text-secondary-on-dark: oklch(0.8711 0.0055 286.29);
+    --color-text-muted-on-dark: oklch(0.8711 0.0055 286.29);
 
-    --background-color-card-on-light: oklch(0.9288 0.00602 240.353);
-    --background-color-card-on-dark: oklch(0.31949 0.0106 285.743);
+    --card-color-on-light: oklch(0.9688 0.001 310.33);
+    --card-color-on-dark: oklch(0.2745 0.0652 258.26);
+    --card-color-shadow-on-light: 10px 10px 0 0 oklch(63.568% 0.01042 286.005);
+    --card-color-shadow-on-dark: 10px 10px 0 0 oklch(0.1383 0.0518 258.26);
 
-    --color-primary-on-light: rgb(134, 202, 247);
-    --color-primary-on-dark: oklch(0.30772 0.10085 256.487);
-    --color-primary: oklch(0.5134 0.1603 255.67);
+    --color-background-row-selected-on-light: oklch(0.9688 0.001 310.33);
+    --color-background-row-selected-on-dark: oklch(0.2745 0.0652 258.26);
+
+    /* brand colors */
+    --color-primary: oklch(0.5465 0.2024 258.26);
+    --color-primary-on-hover: oklch(0.6264 0.2024 258.26);
+
     /* typography */
     --font-family-primary: 'Inter', sans-serif;
     --font-weight-regular: 400;

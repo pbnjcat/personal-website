@@ -3,18 +3,20 @@ html[data-theme="light"] {
   --color-background: var(--background-color-on-light);
   --color-text: var(--color-text-default);
   --color-button-border: var(--color-text-default);
-  --color-text-muted: var(--color-text-secondary-on-light);
-  --background-color-card: var(--background-color-card-on-light);
-  --color-primary: var(--color-primary-on-light);
+  --color-text-muted: var(--color-text-muted-on-light);
+  --card-color: var(--card-color-on-light);
+  --color-background-row-selected: var(--color-background-row-selected-on-light);
+  --card-shadow: var(--card-color-shadow-on-light);
 }
 
 html[data-theme='dark'] {
   --color-background: var(--background-color-on-dark);
-  --color-primary: var(--color-primary-on-dark);
   --color-text: var(--color-text-inversed);
   --color-button-border: var(--color-text-inversed);
-  --color-text-muted: var(--color-text-secondary-on-dark);
-  --background-color-card: var(--background-color-card-on-dark);
+  --color-text-muted: var(--color-text-muted-on-dark);
+  --card-color: var(--card-color-on-dark);
+  --color-background-row-selected: var(--color-background-row-selected-on-dark);
+  --card-shadow: var(--card-color-shadow-on-dark);
 }
 
 html[data-theme='dark'] button[data-icon='sun'] {

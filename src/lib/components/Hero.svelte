@@ -1,6 +1,7 @@
 <script lang="ts">
 	import BrandGithubFilled from '@tabler/icons-svelte/icons/brand-github-filled';
 	import BrandLinkedin from '@tabler/icons-svelte/icons/brand-linkedin';
+	import ExternalLink from '@tabler/icons-svelte/icons/external-link';
 	import { resolve } from '$app/paths';
 	import resumeData from '$lib/data/resume.json';
 </script>
@@ -21,6 +22,7 @@
 				rel="noopener noreferrer"
 				target="_blank"
 				aria-label="GitHub profile"
+				data-tool-tip="Github"
 			>
 				<BrandGithubFilled size={24} />
 			</a>
@@ -32,6 +34,7 @@
 				target="_blank"
 				href="https://www.linkedin.com/in/randy-li-853237199/"
 				aria-label="LinkedIn profile"
+				data-tool-tip="LinkedIn"
 			>
 				<BrandLinkedin size={24} />
 			</a>
@@ -41,8 +44,10 @@
 		class="hero__cta"
 		href={resolve(resumeData.resumeFile as '/')}
 		rel="noopener noreferrer"
-		target="_blank">View Resume</a
-	>
+		target="_blank"
+		>View Resume
+		<span aria-hidden="true"><ExternalLink size={24} /></span>
+	</a>
 </section>
 
 <style>
@@ -70,19 +75,16 @@
 	}
 
 	.hero__cta {
-		display: inline-block;
+		display: inline-flex;
 		background-color: var(--color-primary);
+		align-items: center;
 		text-decoration: none;
-		color: var(--color-text);
+		gap: var(--spacing-xx-small);
+		color: var(--color-text-inversed);
 		border-radius: 0.25rem;
-		padding: var(--spacing-x-small) var(--spacing-medium);
+		padding: var(--spacing-x-small) var(--spacing-small);
 		cursor: pointer;
 		transition: all 0.2s ease;
-	}
-
-	.hero__cta:hover {
-		background-color: var(--color-text);
-		color: var(--color-background);
 	}
 
 	.social-media {
@@ -94,16 +96,81 @@
 
 	.social-media__link {
 		display: flex;
-		align-items: center;
+		align-items: flex-end;
 		border-style: 1px solid var(--color-button-border);
 		color: var(--color-text-muted);
 		text-decoration: none;
-		border-radius: 0.5rem;
+		border-radius: var(--spacing-x-small);
 		padding: var(--spacing-small);
-		transition: all 0.2s ease;
+		transition: all 200ms ease;
 	}
 
-	.social-media__link:hover {
-		transform: translate(2px, -2px);
+	@media (any-hover: none) {
+		.hero__cta:active {
+			transform: scale(0.97);
+			background-color: var(--color-primary-on-hover);
+		}
+
+		.social-media__link:active {
+			transform: scale(0.97);
+			background-color: var(--color-background-row-selected);
+		}
+	}
+
+	@media (hover) {
+		.hero__cta:hover {
+			background-color: var(--color-primary-on-hover);
+			color: var(--color-text-inversed);
+		}
+
+		.hero__cta span {
+			display: inline-flex;
+			transition: transform 300ms ease;
+		}
+
+		.hero__cta:hover span {
+			transform: translate(4px, -4px);
+		}
+
+		.social-media__link:hover {
+			background-color: var(--color-background-row-selected);
+		}
+
+		.social-media__link[data-tool-tip] {
+			position: relative;
+		}
+
+		.social-media__link::after {
+			content: attr(data-tool-tip);
+			display: block;
+			position: absolute;
+			background-color: var(--color-primary);
+			padding: var(--spacing-xx-small);
+			color: var(--color-text-inversed);
+			border-radius: var(--spacing-xx-small);
+			font-size: var(--font-size-body-small);
+			left: 0;
+			bottom: 0;
+			white-space: nowrap;
+			transform: scale(0);
+			transition:
+				transform ease-out 100ms,
+				bottom ease-out 100ms;
+		}
+
+		.social-media__link:hover::after {
+			transform: scale(1);
+			bottom: 100%;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.social-media__link::after {
+			transition: none;
+		}
+
+		.hero__cta:hover span {
+			transform: none;
+		}
 	}
 </style>

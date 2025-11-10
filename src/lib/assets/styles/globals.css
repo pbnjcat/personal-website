@@ -4,6 +4,16 @@
 @import url('./_variables.css') layer(variables);
 @import url('./_theme.css') layer(theme);
 
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   font-family: var(--font-family-primary);
   font-size: 16px;
