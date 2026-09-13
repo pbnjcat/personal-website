@@ -47,7 +47,7 @@
 		<p class="description">{description}</p>
 	{:else}
 		<p>
-			Iam actively looking for opportunities to grow my experience in IT — feel free to reach out!
+			I am actively looking for opportunities to grow my experience in IT — feel free to reach out!
 		</p>
 	{/each}
 </section>
