@@ -1,7 +1,7 @@
 <script lang="ts">
-	import BrandGithubFilled from '@tabler/icons-svelte/icons/brand-github-filled';
-	import BrandLinkedin from '@tabler/icons-svelte/icons/brand-linkedin';
-	import ExternalLink from '@tabler/icons-svelte/icons/external-link';
+	import BrandGithubFilled from 'virtual:icons/tabler/brand-github';
+	import BrandLinkedin from 'virtual:icons/tabler/brand-linkedin';
+	import ExternalLink from 'virtual:icons/tabler/external-link';
 	import { resolve } from '$app/paths';
 	import resumeData from '$lib/data/resume.json';
 </script>
@@ -9,9 +9,9 @@
 <section id="hero" aria-label="Welcome section">
 	<div>
 		<h1 class="hero__title">Hello, my name is Randy.</h1>
-		<h2 class="hero__subtitle">Web Developer</h2>
+		<h2 class="hero__subtitle">IT & Web Dev Enthusiast</h2>
 		<p class="hero__description">
-			Designing responsive, user-focused websites from foggy San Francisco, CA.
+			Solving technical problems and making websites for fun from foggy San Francisco
 		</p>
 	</div>
 	<ul class="social-media" aria-label="Social media links">
@@ -24,7 +24,7 @@
 				aria-label="GitHub profile"
 				data-tool-tip="Github"
 			>
-				<BrandGithubFilled size={24} />
+				<BrandGithubFilled width={24} height={24} />
 			</a>
 		</li>
 		<li class="social-media__item">
@@ -36,7 +36,7 @@
 				aria-label="LinkedIn profile"
 				data-tool-tip="LinkedIn"
 			>
-				<BrandLinkedin size={24} />
+				<BrandLinkedin width={24} height={24} />
 			</a>
 		</li>
 	</ul>
@@ -46,7 +46,7 @@
 		rel="noopener noreferrer"
 		target="_blank"
 		>View Resume
-		<span aria-hidden="true"><ExternalLink size={24} /></span>
+		<span aria-hidden="true"><ExternalLink width={24} height={24} /></span>
 	</a>
 </section>
 

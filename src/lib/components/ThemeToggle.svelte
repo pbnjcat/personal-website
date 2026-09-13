@@ -1,60 +1,160 @@
 <script lang="ts">
-	import Sun from '@tabler/icons-svelte/icons/sun';
-	import Moon from '@tabler/icons-svelte/icons/moon';
-	import { onMount } from 'svelte';
+	import { MediaQuery } from 'svelte/reactivity';
+	import Sun from 'virtual:icons/tabler/sun';
+	import Moon from 'virtual:icons/tabler/moon';
+	import DeviceDesktop from 'virtual:icons/tabler/device-desktop';
+	import Check from 'virtual:icons/tabler/check';
+	import { browser } from '$app/environment';
+	import type { Component } from 'svelte';
 
-	let currentTheme = $state('');
+	type Preference = 'light' | 'dark' | 'system';
 
-	onMount(() => {
-		const appliedTheme = document.documentElement.dataset['theme'];
-		currentTheme = appliedTheme || 'light';
-	});
-
-	function setTheme(theme: string) {
-		currentTheme = theme;
-		document.documentElement.dataset['theme'] = currentTheme;
-		localStorage.setItem('theme', currentTheme);
+	function readStoredPreference(): Preference {
+		try {
+			const storedTheme = localStorage.getItem('theme');
+			return storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : 'system';
+		} catch (error) {
+			return 'system';
+		}
 	}
 
-	function switchTheme() {
-		const theme = localStorage.getItem('theme') === 'light' ? 'dark' : 'light';
-		setTheme(theme);
+	const prefersDark = new MediaQuery('(prefers-color-scheme: dark)');
+	let preference = $state<Preference>(browser ? readStoredPreference() : 'system');
+	let isOpen = $state(false);
+
+	let appliedTheme = $derived(
+		preference === 'system' ? (prefersDark.current ? 'dark' : 'light') : preference
+	);
+
+	const options: { value: Preference; label: string; icon: Component }[] = [
+		{ value: 'light', label: 'Light', icon: Sun },
+		{ value: 'dark', label: 'Dark', icon: Moon },
+		{ value: 'system', label: 'System', icon: DeviceDesktop }
+	];
+
+	$effect(() => {
+		document.documentElement.dataset.theme = appliedTheme;
+	});
+
+	function switchTheme(pref: Preference) {
+		preference = pref;
+		try {
+			localStorage.setItem('theme', pref);
+		} catch {}
+		isOpen = false;
 	}
 </script>
 
-<button class="theme-toggle" aria-label="toggle theme" onclick={() => switchTheme()}>
-	<Moon size={24} stroke={2} data-icon="moon" />
-
-	<Sun size={24} stroke={2} data-icon="sun" />
-</button>
+<div class="theme-menu-wrapper">
+	<button
+		class="theme-toggle"
+		aria-label="Theme options"
+		aria-haspopup="menu"
+		aria-expanded={isOpen}
+		onclick={() => (isOpen = !isOpen)}
+	>
+		<Moon class="theme-menu-icon" data-icon="moon" />
+		<Sun class="theme-menu-icon" data-icon="sun" />
+	</button>
+	{#if isOpen}
+		<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+		<div class="menu-overlay" onclick={() => (isOpen = false)}></div>
+		<ul class="theme-menu" role="menu">
+			{#each options as opt}
+				<li role="none">
+					<button
+						type="button"
+						class="theme-option"
+						role="menuitemradio"
+						aria-checked={preference === opt.value}
+						onclick={() => switchTheme(opt.value)}
+					>
+						<opt.icon class="theme-menu-icon" />
+						<span>{opt.label}</span>
+						{#if preference === opt.value}<Check />{/if}
+					</button>
+				</li>
+			{/each}
+		</ul>
+	{/if}
+</div>
 
 <style>
+	.theme-menu-wrapper {
+		position: relative;
+	}
+
 	.theme-toggle {
 		display: flex;
+		outline: none;
+		border: 1px solid var(--color-border);
+		background: var(--card-color);
+		padding: var(--spacing-xx-small);
 		border-radius: var(--spacing-x-small);
-		padding: var(--spacing-x-small);
-		cursor: pointer;
-		color: var(--color-text-muted);
-		border: none;
-		background-color: transparent;
-		transition: color 250ms;
+		color: var(--color-text);
 	}
 
-	:global([data-icon='moon']) {
+	.theme-toggle :global(svg) {
+		color: inherit;
+		height: 2rem;
+		width: auto;
+		flex-shrink: 0;
+	}
+
+	.theme-menu {
+		position: absolute;
+		right: 0;
+		z-index: 40;
+		margin: 0;
+		padding: var(--spacing-xx-small);
+		min-width: 8rem;
+		list-style: none;
+		background-color: var(--card-color);
+		border: 1px solid var(--color-border);
+		border-radius: var(--spacing-x-small);
+		box-shadow: var(--card-color-shadow);
+
+		button {
+			display: flex;
+			align-items: center;
+			width: 100%;
+			gap: var(--spacing-xx-small);
+			padding: var(--spacing-x-small);
+			border: none;
+			background: none;
+			color: var(--color-text);
+			border-radius: var(--spacing-xx-small);
+			cursor: pointer;
+		}
+	}
+	.theme-menu button :global(svg) {
+		height: 1.25rem;
+		width: auto;
+		flex-shrink: 0;
+	}
+
+	.menu-overlay {
+		position: fixed;
+		inset: 0;
+		z-index: 40;
+	}
+
+	:global(html[data-theme='dark']) .theme-toggle :global([data-icon='sun']) {
 		display: none;
 	}
-
-	:global(html[data-theme='dark'] [data-icon='moon']) {
-		display: block;
-	}
-
-	:global(html[data-theme='dark'] [data-icon='sun']) {
+	:global(html:not([data-theme='dark'])) .theme-toggle :global([data-icon='moon']) {
 		display: none;
 	}
 
 	@media (hover: hover) {
 		.theme-toggle:hover {
+			background: var(--color-background-row-selected);
+			cursor: pointer;
+		}
+
+		.theme-option:hover {
 			background-color: var(--color-background-row-selected);
+			color: var(--color-primary);
 		}
 	}
 </style>

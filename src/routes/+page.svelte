@@ -4,18 +4,18 @@
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
-	const projects = data.projects;
-	const work = data.work;
-	const education = data.education;
+	const projects = $derived(data.projects);
+	const work = $derived(data.work);
+	const education = $derived(data.education);
 </script>
 
 <Hero />
 <section id="about" aria-label="About me">
 	<h2 class="hero__subtitle">About</h2>
 	<p class="hero__description">
-		I am someone who loves observing how people interact with products and finding ways to improve
-		them. That is why I love the unique mix of creativity and logic that goes into web development.
-		When not at my computer, I enjoy reading, fishing, and listening to music.
+		I enjoy solving problems with technology, especially in networking and systems administration,
+		where I get to learn how systems work and keep them running reliably. When I am not at my
+		computer, I enjoy reading, fishing, and listening to music.
 	</p>
 </section>
 <section id="projects" aria-label="My projects">
@@ -49,17 +49,17 @@
 
 <section id="education" aria-label="My education">
 	<h2 class="section__title">Education</h2>
-	{#each education as education}
-		<h3>{education.school}</h3>
-		<h4>{education.study}</h4>
+	{#each education as edu}
+		<h3>{edu.school}</h3>
+		<h4>{edu.study}</h4>
 		<span>
-			{education.startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+			{edu.startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
 			-
-			{education.endDate
-				? education.endDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+			{edu.endDate
+				? edu.endDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
 				: 'Present'}
 		</span>
-		<p class="description">{education.description}</p>
+		<p class="description">{edu.description}</p>
 	{/each}
 </section>
 

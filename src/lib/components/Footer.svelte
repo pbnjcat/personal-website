@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Copyright from '@tabler/icons-svelte/icons/copyright';
+	import Copyright from 'virtual:icons/tabler/copyright';
 
 	let currentDate = new Date().getFullYear();
 </script>
@@ -9,7 +9,7 @@
 		Website designed in Figma, built with SvelteKit, and managed using Sveltia.
 	</p>
 	<div class="footer__copyright">
-		<Copyright size={24} stroke={2} />
+		<Copyright width={24} height={24} />
 		<p>
 			{currentDate} | Randy Li
 		</p>

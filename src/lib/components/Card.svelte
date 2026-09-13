@@ -25,14 +25,16 @@
 		}
 	);
 
-	const imageFileName = image.split('/').pop() ?? '';
+	const imageFileName = $derived(image.split('/').pop() ?? '');
 
-	const selectedImage = (
-		Object.entries(imageModules).find(([path]) => {
-			const imageModuleName = path.split('/').pop() ?? '';
-			return imageFileName === imageModuleName;
-		})?.[1] as { default: string }
-	)?.default;
+	const selectedImage = $derived(
+		(
+			Object.entries(imageModules).find(([path]) => {
+				const imageModuleName = path.split('/').pop() ?? '';
+				return imageFileName === imageModuleName;
+			})?.[1] as { default: string }
+		)?.default
+	);
 
 	onMount(() => {
 		if (!target) return;
