@@ -41,7 +41,7 @@ const convertToInterfaceWork = (value: { employer: string, title: string, startD
         description: value.description
     }
 }
-const allWork = workData.work.map(convertToInterfaceWork)
+const allWork = (workData.work ?? []).map(convertToInterfaceWork);
 
 interface Education {
     school: string;
@@ -60,7 +60,8 @@ const convertToInterfaceEducation = (value: { school: string, study: string, sta
         description: value.description
     }
 }
-const allEducation = educationData.education.map(convertToInterfaceEducation);
+
+const allEducation = (educationData.education ?? []).map(convertToInterfaceEducation);
 
 export function load() {
     return {
