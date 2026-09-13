@@ -34,19 +34,23 @@
 <section id="work" aria-label="My work">
 	<h2 class="section__title">Work</h2>
 	{#each work as job}
-		<h3>{job.employer}</h3>
-		<h4>{job.title}</h4>
+		{@const { employer, title, description, startDate, endDate } = job}
+		<h3>{employer}</h3>
+		<h4>{title}</h4>
 		<span
-			>{job.startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+			>{startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
 			-
-			{job.endDate
-				? job.endDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+			{endDate
+				? endDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
 				: 'Present'}</span
 		>
-		<p class="description">{job.description}</p>
+		<p class="description">{description}</p>
+	{:else}
+		<p>
+			Iam actively looking for opportunities to grow my experience in IT — feel free to reach out!
+		</p>
 	{/each}
 </section>
-
 <section id="education" aria-label="My education">
 	<h2 class="section__title">Education</h2>
 	{#each education as edu}
