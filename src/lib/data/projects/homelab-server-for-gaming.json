@@ -1,6 +1,6 @@
 {
   "title": "Homelab Game Server",
-  "image": "/src/lib/assets/images/IMG_1651.jpg",
+  "image": "/src/lib/assets/images/Discord_E9PE8LfApz.png",
   "startDate": "2025-10-16",
   "description": "Repurposed old computer components to build a server computer for hosting co-op games. Using Ubuntu Server and Cubecoders AMP to configure and deploy game server instances and automate backups.",
   "demo": ""
